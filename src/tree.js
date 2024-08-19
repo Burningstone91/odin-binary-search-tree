@@ -19,6 +19,19 @@ class Tree {
 
     return node;
   }
+
+  insert(value, currNode = this.root) {
+    if (currNode === null) return new Node(value);
+    if (currNode.value === value) return;
+
+    if (currNode.value < value) {
+      currNode.rightChild = this.insert(value, currNode.rightChild);
+    } else {
+      currNode.leftChild = this.insert(value, currNode.leftChild);
+    }
+
+    return currNode;
+  }
 }
 
 export { Tree };

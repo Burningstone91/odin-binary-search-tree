@@ -5,6 +5,7 @@ import { prettyPrint } from "./utilities.js";
 const testArray = [5, 4, 2, 8, 6, 4];
 const testTree = new Tree(testArray);
 
-console.log(testTree);
+testTree.insert(14);
+testTree.insert(1);
 
 prettyPrint(testTree.root);
