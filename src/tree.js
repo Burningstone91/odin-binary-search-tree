@@ -32,6 +32,35 @@ class Tree {
 
     return currNode;
   }
+
+  remove(value, currNode = this.root) {
+    if (currNode === null) return currNode;
+    if (currNode.value > value) {
+      currNode.leftChild = this.remove(value, currNode.leftChild);
+    } else if (currNode.value < value) {
+      currNode.rightChild = this.remove(value, currNode.rightChild);
+    } else {
+      if (currNode.leftChild && currNode.rightChild) {
+        return currNode.rightChild || currNode.leftChild;
+      }
+
+      let succ = this.#getSuccessor(currNode.rightChild);
+      currNode.value = succ.value;
+      currNode.right = this.remove(succ.value, currNode.rightChild);
+    }
+
+    return currNode;
+  }
+
+  #getSuccessor(node) {
+    let currNode = node;
+
+    while (currNode.leftChild) {
+      currNode = currNode.leftChild;
+    }
+
+    return currNode;
+  }
 }
 
 export { Tree };
