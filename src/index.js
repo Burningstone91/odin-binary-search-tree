@@ -15,3 +15,5 @@ prettyPrint(testTree.root);
 testTree.remove(8);
 
 prettyPrint(testTree.root);
+
+console.log(testTree.find(4));

@@ -52,6 +52,16 @@ class Tree {
     return currNode;
   }
 
+  find(value, currNode = this.root) {
+    if (currNode === null || currNode.value === value) return currNode;
+
+    if (currNode.value > value) {
+      return this.find(value, currNode.leftChild);
+    } else {
+      return this.find(value, currNode.rightChild);
+    }
+  }
+
   #getSuccessor(node) {
     let currNode = node;
 
