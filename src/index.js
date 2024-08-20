@@ -17,3 +17,8 @@ testTree.remove(8);
 prettyPrint(testTree.root);
 
 console.log(testTree.find(4));
+
+function double(value) {
+  return value * 2;
+}
+console.log(testTree.levelOrder(double));
