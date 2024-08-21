@@ -26,3 +26,6 @@ console.log(testTree.levelOrder(double));
 console.log(testTree.inOrder(double));
 console.log(testTree.preOrder(double));
 console.log(testTree.postOrder(double));
+
+console.log(testTree.height());
+console.log(testTree.depth(1));

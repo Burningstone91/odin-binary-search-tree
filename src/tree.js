@@ -122,6 +122,26 @@ class Tree {
     if (postOrderList.length > 0) return postOrderList;
   }
 
+  height(currNode = this.root) {
+    if (currNode === null) return 0;
+
+    const leftHeight = this.height(currNode.leftChild);
+    const rightHeight = this.height(currNode.rightChild);
+
+    return Math.max(leftHeight, rightHeight) + 1;
+  }
+
+  depth(currNodeVal, currNode = this.root, edgeCount = 0) {
+    if (currNode === null) return;
+    if (currNode.value === currNodeVal) return edgeCount;
+
+    if (currNode.value < currNodeVal) {
+      return this.depth(currNodeVal, currNode.rightChild, edgeCount + 1);
+    } else {
+      return this.depth(currNodeVal, currNode.leftChild, edgeCount + 1);
+    }
+  }
+
   #getSuccessor(node) {
     let currNode = node;
 
