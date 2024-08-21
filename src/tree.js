@@ -142,6 +142,29 @@ class Tree {
     }
   }
 
+  isBalanced() {
+    return this.#testBalance(this.root) !== -1;
+  }
+
+  rebalance() {
+    const inOrderList = this.inOrder((value) => value);
+    this.root = this.buildTree(inOrderList);
+  }
+
+  #testBalance(currNode) {
+    if (currNode === null) return 0;
+
+    const leftBalance = this.#testBalance(currNode.leftChild);
+    const rightBalance = this.#testBalance(currNode.rightChild);
+    const diff = Math.abs(leftBalance - rightBalance);
+
+    if (leftBalance === -1 || rightBalance === -1 || diff > 1) {
+      return -1;
+    } else {
+      return Math.max(leftBalance, rightBalance) + 1;
+    }
+  }
+
   #getSuccessor(node) {
     let currNode = node;
 

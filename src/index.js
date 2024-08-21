@@ -21,7 +21,7 @@ console.log(testTree.find(4));
 function double(value) {
   return value * 2;
 }
-console.log(testTree.levelOrder(double));
+console.log(testTree.levelOrder((value) => value));
 
 console.log(testTree.inOrder(double));
 console.log(testTree.preOrder(double));
