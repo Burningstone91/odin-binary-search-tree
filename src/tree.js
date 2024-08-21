@@ -83,6 +83,45 @@ class Tree {
     if (levelOrderList.length > 0) return levelOrderList;
   }
 
+  inOrder(cb, currNode = this.root, inOrderList = []) {
+    if (typeof cb !== "function")
+      throw new Error("Callback function is not provided!");
+
+    if (currNode === null) return;
+
+    this.inOrder(cb, currNode.leftChild, inOrderList);
+    inOrderList.push(cb(currNode.value));
+    this.inOrder(cb, currNode.rightChild, inOrderList);
+
+    if (inOrderList.length > 0) return inOrderList;
+  }
+
+  preOrder(cb, currNode = this.root, preOrderList = []) {
+    if (typeof cb !== "function")
+      throw new Error("Callback function is not provided!");
+
+    if (currNode === null) return;
+
+    preOrderList.push(cb(currNode.value));
+    this.preOrder(cb, currNode.leftChild, preOrderList);
+    this.preOrder(cb, currNode.rightChild, preOrderList);
+
+    if (preOrderList.length > 0) return preOrderList;
+  }
+
+  postOrder(cb, currNode = this.root, postOrderList = []) {
+    if (typeof cb !== "function")
+      throw new Error("Callback function is not provided!");
+
+    if (currNode === null) return;
+
+    this.postOrder(cb, currNode.leftChild, postOrderList);
+    this.postOrder(cb, currNode.rightChild, postOrderList);
+    postOrderList.push(cb(currNode.value));
+
+    if (postOrderList.length > 0) return postOrderList;
+  }
+
   #getSuccessor(node) {
     let currNode = node;
 
